@@ -2,7 +2,7 @@ import { FC, useContext } from 'react'
 import cls from './Menu.module.sass'
 import { classNames } from '@shared/lib/classNames'
 import { AppContext } from '@app/providers/AppProvider'
-import { Item } from '../item/item'
+import { Item } from '../item/Item'
 
 import { ReactComponent as Logo } from "@app/assets/icons/logo.svg"
 import UserProfile from '@shared/ui/UserProfile'

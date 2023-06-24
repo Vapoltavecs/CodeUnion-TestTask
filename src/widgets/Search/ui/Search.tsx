@@ -1,6 +1,4 @@
-import React, { FC, FormEvent, useCallback, useEffect, useRef } from 'react'
-// import cls from './Search.module.sass'
-// import { classNames } from '@shared/lib/classNames'
+import React, { FC, useCallback, useEffect, useRef } from 'react'
 import Input from '@shared/ui/Input'
 import { ReactComponent as SearchIcon } from "@app/assets/icons/Search.svg"
 import { useOutsideClick } from '@shared/lib/hooks/useOutsideClick'

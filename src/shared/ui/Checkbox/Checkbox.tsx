@@ -7,5 +7,5 @@ type CheckboxProps = {
 } & InputHTMLAttributes<HTMLInputElement>
 
 export const Checkbox:FC<CheckboxProps> = ({className, ...otherProps}) => {
-    return <div className={classNames(cls.Checkbox, {}, [className])}>Checkbox</div>
+    return <input className={classNames(cls.Checkbox, {}, [className])} {...otherProps}/>
 }

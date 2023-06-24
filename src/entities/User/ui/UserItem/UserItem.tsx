@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useRef, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import cls from './UserItem.module.sass'
 import { classNames } from '@shared/lib/classNames'
 import { IUser } from '@entities/User'
@@ -13,7 +13,7 @@ type UserItemProps = {
     onChangePermissions: (userId: number, newPermissions: Permission[]) => void
 } & IUser
 
-export const UserItem: FC<UserItemProps> = React.memo(({ className, name, permissions, image, email, onDelete, onChangePermissions }) => {
+export const UserItem: FC<UserItemProps> = React.memo(({ className, name, permissions, image, email, onDelete }) => {
     const [contextMenuShowed, setContextMenuShowed] = useState(false)
     const [accessRights, setAccessRights] = useState(false)
 

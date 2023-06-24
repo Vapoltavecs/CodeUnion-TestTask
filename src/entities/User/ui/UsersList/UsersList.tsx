@@ -20,5 +20,5 @@ export const UsersList: FC<UsersListProps> = ({ className, users, loading, error
     if(error){
         return <div>error</div>
     }
-    return <ul className={classNames(cls.list, {}, [className])}>{users.map(user => <li key={user.email} className={cls.list__item}><UserItem onDelete={deleteUser} {...user} /></li>)}</ul>
+    return <ul className={classNames(cls.list, {}, [className])}>{users.map(user => <li key={user.email} className={cls.list__item}><UserItem onChangePermissions={() => {}} onDelete={deleteUser} {...user} /></li>)}</ul>
 }

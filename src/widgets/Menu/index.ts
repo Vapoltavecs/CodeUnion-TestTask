@@ -1,3 +1,3 @@
-import { Menu } from "./ui/Menu/Menu";
+import { Menu } from "./ui/menu/Menu";
 
 export default Menu
