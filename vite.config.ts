@@ -7,7 +7,7 @@ import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/CodeUnion-TestTask/",
+  base: "/",
   plugins: [
     react(),
     alias({
