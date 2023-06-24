@@ -1,0 +1,23 @@
+.item
+    display: flex
+    align-items: center
+    gap: 20px
+    justify-content: center
+    color: var(--gray-color)
+    & > .title
+        display: none
+        overflow: hidden
+        width: 0px
+    &.open > .title
+        display: inline
+        width: 100%
+    &.active
+        color: var(--primary-color)
+    &.active > svg > path
+        fill: currentColor
+        transition: fill .3s
+        color: inherit
+
+.icon > path
+    fill: none !important
+    stroke: currentColor

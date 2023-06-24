@@ -1,0 +1,22 @@
+.menu
+    background: var(--white-color)
+    padding: 22px 26px
+    position: absolute
+    right: 0
+    top: 0%
+    white-space: nowrap
+    box-shadow: -30px 30px 50px 0px rgba(28, 28, 30, 0.10)
+    border-radius: 15px
+    z-index: 100
+    & > li
+        margin-top: 17px
+        &:first-child
+            margin-top: 0
+        & > button
+            border: none
+            background: inherit
+            cursor: pointer
+            color: var(--title-color)
+            transition: all .3s
+            &:hover
+                color: var(--primary-color)
