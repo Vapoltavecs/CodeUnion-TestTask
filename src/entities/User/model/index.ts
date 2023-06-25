@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IUser } from './model';
 export const useUsers = () => {
+
     const [users, setUsers] = useState<IUser[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<Error | null>(null)

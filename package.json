@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Vapoltavecs.github.io/CodeUnion-TestTask",
+  "homepage": "https://vapoltavecs.github.io/CodeUnion-TestTask/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
