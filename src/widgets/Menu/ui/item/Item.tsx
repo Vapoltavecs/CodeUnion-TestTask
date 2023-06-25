@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react'
-import cls from './item.module.sass'
+import cls from './Item.module.sass'
 import { classNames } from '@shared/lib/classNames'
 import { NavLink } from "react-router-dom"
 
