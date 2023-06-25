@@ -11,7 +11,7 @@ import CreateUser from '@features/CreateUser'
 import { useWindowResize } from '@shared/lib/hooks/useWindowResize'
 import { ReactComponent as Burger } from "@app/assets/icons/Burger.svg"
 import { AppContext } from '@app/providers/AppProvider'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 
 const Team: FC = memo(() => {
     const { users, loading, error, createUser, deleteUser, changeUserPermissions } = useUsers()
