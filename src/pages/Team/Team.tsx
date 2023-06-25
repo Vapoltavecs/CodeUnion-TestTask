@@ -11,6 +11,7 @@ import CreateUser from '@features/CreateUser'
 import { useWindowResize } from '@shared/lib/hooks/useWindowResize'
 import { ReactComponent as Burger } from "@app/assets/icons/Burger.svg"
 import { AppContext } from '@app/providers/AppProvider'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const Team: FC = memo(() => {
     const { users, loading, error, createUser, deleteUser, changeUserPermissions } = useUsers()
@@ -54,7 +55,7 @@ const Team: FC = memo(() => {
             <div className={cls.Team__header}>
                 <div className={cls.Team__title}>{isMobile && <button onClick={openMenu}><Burger /></button>}<h1>Команда</h1></div>
                 <div className={cls.Team__controllers}>
-                    {isMobile ? search : (isSearched ? search : <SearchIcon onClick={openSearch} className={cls.Team__icon} />)}
+                    <AnimatePresence>{isMobile ? search : (isSearched ?  search : <SearchIcon onClick={openSearch} className={cls.Team__icon} />)}</AnimatePresence>
                     <Button onClick={switchModal} className={cls.Team__button}>Добавить пользователя</Button>
                 </div>
             </div>

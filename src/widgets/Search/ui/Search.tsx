@@ -27,4 +27,4 @@ export const Search: FC<SearchProps> = React.memo(({ className, focusOnInit, onO
 
 
     return <Input onChange={changeHandler} value={searchValue} className={className} inputRef={inputRef} icon={<SearchIcon />} placeholder="Поиск по Email" />
-})
+})  
