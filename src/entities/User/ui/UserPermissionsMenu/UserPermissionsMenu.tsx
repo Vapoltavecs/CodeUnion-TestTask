@@ -1,4 +1,4 @@
-import { FC, FormEvent, memo, useCallback, useMemo, useRef } from 'react'
+import { FC, memo, useCallback, useMemo, useRef } from 'react'
 import cls from './UserPermissionsMenu.module.sass'
 import { AnimatePresence, motion } from "framer-motion"
 import { useOutsideClick } from '@shared/lib/hooks/useOutsideClick'
