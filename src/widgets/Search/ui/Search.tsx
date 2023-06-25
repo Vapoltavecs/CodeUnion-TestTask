@@ -2,6 +2,7 @@ import React, { FC, useCallback, useEffect, useRef } from 'react'
 import Input from '@shared/ui/Input'
 import { ReactComponent as SearchIcon } from "@app/assets/icons/Search.svg"
 import { useOutsideClick } from '@shared/lib/hooks/useOutsideClick'
+import { useWindowResize } from '@shared/lib/hooks/useWindowResize'
 
 type SearchProps = {
     className?: string,
@@ -14,9 +15,10 @@ type SearchProps = {
 export const Search: FC<SearchProps> = React.memo(({ className, focusOnInit, onOutsideClick, searchValue, onSearch }) => {
     const inputRef = useRef<HTMLInputElement>(null)
     useOutsideClick(inputRef, () => onOutsideClick && onOutsideClick())
+    const { width } = useWindowResize()
 
     useEffect(() => {
-        if (focusOnInit && inputRef.current) {
+        if (focusOnInit && inputRef.current && (width >  900)) {
             inputRef.current.focus()
         }
     }, [])
