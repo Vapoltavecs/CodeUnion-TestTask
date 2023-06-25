@@ -12,7 +12,8 @@ export const useUsers = () => {
     const fetchUsers = async () => {
         try {
             setLoading(true)
-            console.log(URL)
+            console.log(URL, import.meta.env.MODE)
+            
             const data = await (await fetch(URL)).json() // Тут можно было бы сделать через axios, однако в приложении всего 1 запрос, поэтому не вижу в этом смысла
             setUsers(data)
             setError(null)
