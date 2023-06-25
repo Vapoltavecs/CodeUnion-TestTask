@@ -9,7 +9,7 @@ export const useUsers = () => {
     const fetchUsers = async () => {
         try {
             setLoading(true)
-            const data = await (await fetch("db.json")).json() // Тут можно было бы сделать через axios, однако в приложении всего 1 запрос, поэтому не вижу в этом смысла
+            const data = await (await fetch("/assets/db.json")).json() // Тут можно было бы сделать через axios, однако в приложении всего 1 запрос, поэтому не вижу в этом смысла
             setUsers(data)
             setError(null)
         } catch (error) {
