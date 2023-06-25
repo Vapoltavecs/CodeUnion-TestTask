@@ -1,4 +1,4 @@
-import { FC, memo, useContext } from 'react'
+import React, { FC, memo, useContext } from 'react'
 import cls from './Menu.module.sass'
 import { classNames } from '@shared/lib/classNames'
 import { AppContext } from '@app/providers/AppProvider'
@@ -21,13 +21,20 @@ export const Menu: FC<MenuProps> = memo(({ className }) => {
     const showFullVersion = width > 900
 
     const closeMenu = () => menu.setValue(false)
+
+    const menuClickHandler = (e:React.MouseEvent) => {
+        if((e.target as Element).className.split(" ").includes(cls.Menu__item)){
+            closeMenu()
+        }
+    }
+
     return (
         <nav className={classNames(cls.Menu, { [cls.open]: menu.value }, [className])}>
             {showFullVersion && <NavLink to="/"><Logo className={cls.logo} /></NavLink>}
             {!showFullVersion && <button onClick={closeMenu} className={cls.Menu__burger}><Burger /></button>}
             <UserProfile role='Собственник' avatar={Avatar} withName={!showFullVersion} name="Артем Иванов" className={cls.Menu__user} />
-            <ul className={classNames(cls.Menu__list)}>
-                {menuItems.map(item => <li key={item.title}><Item {...item} menuOpened={!showFullVersion} /></li>)}
+            <ul onClick={menuClickHandler} className={classNames(cls.Menu__list)}>
+                {menuItems.map(item => <li key={item.title}><Item {...item} className={classNames(cls.Menu__item, {}, [item.className])} menuOpened={!showFullVersion} /></li>)}
             </ul>
         </nav>
     )
