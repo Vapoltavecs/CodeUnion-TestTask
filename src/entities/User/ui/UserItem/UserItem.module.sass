@@ -8,13 +8,14 @@
         background: #EFEFF6
     &__profile
         display: flex
-        align-items: center
         gap: 20px
     &__permissions
         display: flex
         align-items: center
         gap: 5px
         margin-top: 14px
+        color: var(--gray-color)
+        flex-wrap: wrap
         
     &__permission
         padding: 7px
@@ -33,6 +34,7 @@
         border-radius: 50%
     &__header
         display: flex
+        align-items: flex-start
         gap: 11px
     &__name
         color: var(--title-color)
@@ -48,3 +50,12 @@
         border: none
         background: inherit
         cursor: pointer
+
+@media (max-width: 900px) 
+    .profile
+        &__header
+            flex-direction: column
+            gap: 5px
+    .user
+        &__info
+            // width: calc( 100% - 30px )

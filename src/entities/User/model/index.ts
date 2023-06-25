@@ -34,6 +34,14 @@ export const useUsers = () => {
         setUsers(prev => prev.filter(u => u.email !== user.email))
     }, [users])
 
+    const changeUserPermissions = useCallback((email: string, permissions: string[]) => {
+        setUsers(prev => {
+            const searchedUser = prev.find(u => u.email == email)!
+            searchedUser.permissions = permissions
+            return [...prev]
+        })
+    }, [users])
+
 
     useEffect(() => {
         fetchUsers()
@@ -44,6 +52,7 @@ export const useUsers = () => {
         users,
         loading,
         error,
-        deleteUser
+        deleteUser,
+        changeUserPermissions
     }
 }

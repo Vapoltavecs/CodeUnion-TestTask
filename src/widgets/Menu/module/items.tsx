@@ -9,11 +9,13 @@ import { ReactComponent as Documents } from "@app/assets/icons/Documents.svg"
 import { ReactComponent as Images } from "@app/assets/icons/Images.svg"
 import { ReactComponent as Team } from "@app/assets/icons/Team.svg"
 import { ReactComponent as Todos } from "@app/assets/icons/Todos.svg"
+import { ReactComponent as ExitIcon } from "@app/assets/icons/Exit.svg"
 
 type MenuItem = {
     to: string,
     icon: ReactNode,
-    title: string
+    title: string,
+    className?: string
 }
 
 export const menuItems:MenuItem[] = [
@@ -58,5 +60,11 @@ export const menuItems:MenuItem[] = [
         icon: <Currencies className={cls.icon}/>,
         title: "Курс валют"
     },
+    {
+        to: "/exit",
+        icon: <ExitIcon />,
+        title: "Выйти",
+        className: cls.exit
+    }
     
 ]

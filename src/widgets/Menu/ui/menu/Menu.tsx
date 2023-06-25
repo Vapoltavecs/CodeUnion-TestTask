@@ -1,28 +1,33 @@
-import { FC, useContext } from 'react'
+import { FC, memo, useContext } from 'react'
 import cls from './Menu.module.sass'
 import { classNames } from '@shared/lib/classNames'
 import { AppContext } from '@app/providers/AppProvider'
 import { Item } from '../item/Item'
-
 import { ReactComponent as Logo } from "@app/assets/icons/logo.svg"
 import UserProfile from '@shared/ui/UserProfile'
 import { NavLink } from "react-router-dom"
 import { menuItems } from '@widgets/Menu/module/items'
+import { useWindowResize } from '@shared/lib/hooks/useWindowResize'
+import { ReactComponent as Burger } from "@app/assets/icons/Burger.svg"
 
 type MenuProps = {
-    className?: string
+    className?: string,
 }
 
-export const Menu: FC<MenuProps> = ({ className }) => {
+export const Menu: FC<MenuProps> = memo(({ className }) => {
     const { menu } = useContext(AppContext)
+    const { width } = useWindowResize()
+    const showFullVersion = width > 900
 
+    const closeMenu = () => menu.setValue(false)
     return (
         <nav className={classNames(cls.Menu, { [cls.open]: menu.value }, [className])}>
-            <NavLink to="/"><Logo className={cls.logo} /></NavLink>
-            <UserProfile avatar={"https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg"} withName={menu.value} name="viacheslav" />
+            {showFullVersion && <NavLink to="/"><Logo className={cls.logo} /></NavLink>}
+            {!showFullVersion && <button onClick={closeMenu} className={cls.Menu__burger}><Burger /></button>}
+            <UserProfile role='Собственник' avatar={"https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg"} withName={!showFullVersion} name="Артем Иванов" className={cls.Menu__user} />
             <ul className={classNames(cls.Menu__list)}>
-                {menuItems.map(item => <li key={item.title}><Item {...item} menuOpened={menu.value} /></li>)}
+                {menuItems.map(item => <li key={item.title}><Item {...item} menuOpened={!showFullVersion} /></li>)}
             </ul>
         </nav>
     )
-}
+})

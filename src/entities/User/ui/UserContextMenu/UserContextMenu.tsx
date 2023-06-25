@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react'
+import { FC, memo, useRef } from 'react'
 import cls from './UserContextMenu.module.sass'
 import { AnimatePresence, motion } from "framer-motion"
 import { useOutsideClick } from '@shared/lib/hooks/useOutsideClick'
@@ -11,7 +11,7 @@ type UserContextMenuProps = {
     onClose: () => void
 }
 
-export const UserContextMenu: FC<UserContextMenuProps> = ({ opened, deleteUser, editUser, onClose }) => {
+export const UserContextMenu: FC<UserContextMenuProps> = memo(({ opened, deleteUser, editUser, onClose }) => {
     const contextMenuRef = useRef<HTMLUListElement>(null)
     useOutsideClick(contextMenuRef, () => onClose())
 
@@ -26,4 +26,4 @@ export const UserContextMenu: FC<UserContextMenuProps> = ({ opened, deleteUser, 
                 </motion.ul>}
         </AnimatePresence>
     )
-}
+})

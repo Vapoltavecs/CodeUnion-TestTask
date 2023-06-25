@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, memo, useCallback, useState } from 'react'
 import cls from './CreateUser.module.sass'
 import { classNames } from '@shared/lib/classNames'
 import { IUser } from '@entities/User'
@@ -15,7 +15,7 @@ type CreateUserProps = {
     users: IUser[]
 }
 
-export const CreateUser: FC<CreateUserProps> = ({ className, onCreate, users }) => {
+export const CreateUser: FC<CreateUserProps> = memo(({ className, onCreate, users }) => {
     const [email, setEmail] = useState("")
     const [error, setError] = useState<string>()
     const [permissions, setPermissions] = useState<MultiValue<Permission>>([])
@@ -74,4 +74,4 @@ export const CreateUser: FC<CreateUserProps> = ({ className, onCreate, users }) 
             <Button type='submit' className={cls.CreateUser__button}>Отправить приглашение</Button>
         </form>
     )
-}
+})

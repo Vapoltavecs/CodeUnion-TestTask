@@ -1,3 +1,4 @@
+
 .Menu
     min-height: 100vh
     background: var(--white-color)
@@ -8,6 +9,21 @@
     &__list
         &> li
             margin-top: 34px
+    &__user
+        margin-top: 22px
+    &__burger
+        cursor: pointer
 .logo
     margin: 25px auto
     display: block
+
+@media (max-width: 900px) 
+    .Menu
+        transform: translateX(-100%)
+        position: absolute
+        max-width: 100%
+        width: 100%
+        z-index: 200
+        &.open
+            transform: translateX(0%)
+

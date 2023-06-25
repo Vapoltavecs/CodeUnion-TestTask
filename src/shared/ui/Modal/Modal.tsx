@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import cls from './Modal.module.sass'
 import { classNames } from '@shared/lib/classNames'
@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const DURATION = .3
 
 const modalContainer = document.querySelector(".modal") as HTMLDivElement
+const body = document.querySelector("body") as HTMLBodyElement
 
 type ModalProps = {
     className?: string,
@@ -17,6 +18,13 @@ type ModalProps = {
 
 
 const Modal: FC<ModalProps> = ({ className, children, isOpened, onClose }) => {
+    useEffect(() => {
+        if(isOpened){
+            body.style.overflowY ="hidden"
+        }else{
+            body.style.overflowY = "auto"
+        }
+    }, [isOpened])
     return (
         ReactDOM.createPortal((
             <AnimatePresence> 

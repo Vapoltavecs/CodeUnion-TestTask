@@ -1,4 +1,5 @@
-import { FC, ReactNode, useState } from "react"
+import { useWindowResize } from "@shared/lib/hooks/useWindowResize"
+import { FC, ReactNode, useEffect, useState } from "react"
 import { AppContext } from "../model/context"
 import { IAppContenxt } from "../model/model"
 
@@ -7,8 +8,12 @@ type Props = {
 }
 
 export const AppProvider: FC<Props> = ({ children }) => {
-    const [menuShowed, setMenuShowed] = useState<boolean>(false)
+    const { width } = useWindowResize()
+    const [menuShowed, setMenuShowed] = useState<boolean>(width > 900)
 
+    useEffect(() => {
+        setMenuShowed(width > 900)
+    }, [width])
 
     const ctx: IAppContenxt<boolean> = {
         menu: {

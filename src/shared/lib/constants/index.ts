@@ -18,7 +18,7 @@ export const permissions:Permission[] = [ // В реальном проекте 
     },
     {
         value: "appeal",
-        label: "Обращения клиентов"
+        label: "Обращение клиентов"
     },
     {
         value: "analytics",
@@ -27,5 +27,9 @@ export const permissions:Permission[] = [ // В реальном проекте 
     {
         value: "stock",
         label: "Акции"
+    },
+    {
+        value: "admin",
+        label: "Администратор"
     }
 ]

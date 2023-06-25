@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, memo, useCallback, useContext, useState } from 'react'
 import cls from './Team.module.sass'
 import { classNames } from '@shared/lib/classNames'
 import { IUser, useUsers } from '@entities/User'
@@ -8,13 +8,18 @@ import Search from '@widgets/Search'
 import { ReactComponent as SearchIcon } from "@app/assets/icons/Search.svg"
 import { SearchUsers } from '@features/UsersFilter'
 import CreateUser from '@features/CreateUser'
+import { useWindowResize } from '@shared/lib/hooks/useWindowResize'
+import { ReactComponent as Burger } from "@app/assets/icons/Burger.svg"
+import { AppContext } from '@app/providers/AppProvider'
 
-const Team: FC = () => {
-    const { users, loading, error, createUser, deleteUser } = useUsers()
+const Team: FC = memo(() => {
+    const { users, loading, error, createUser, deleteUser, changeUserPermissions } = useUsers()
+    const { menu } = useContext(AppContext)
     const [createShowed, setCreateShowed] = useState(false)
     const [isSearched, setSearched] = useState(false)
     const [searchedEmail, setSearchedEmail] = useState("")
     const [addedUser, setAddedUser] = useState<IUser>()
+    const { width } = useWindowResize()
 
     const switchModal = useCallback(() => {
         setAddedUser(undefined)
@@ -38,16 +43,22 @@ const Team: FC = () => {
         setAddedUser(user)
     }, [])
 
+    const openMenu = () => menu.setValue(true)
+
+    const isMobile = width < 900
+
+    const search = <Search className={cls.Team__search} onOutsideClick={closeSearch} searchValue={searchedEmail} onSearch={onSearch} focusOnInit />
+
     return (
         <div className={classNames(cls.Team)}>
             <div className={cls.Team__header}>
-                <h1 className={cls.Team__title}>Команда</h1>
+                <div className={cls.Team__title}>{isMobile && <button onClick={openMenu}><Burger /></button>}<h1>Команда</h1></div>
                 <div className={cls.Team__controllers}>
-                    {isSearched ? <Search className={cls.Team__search} onOutsideClick={closeSearch} searchValue={searchedEmail} onSearch={onSearch} focusOnInit /> : <SearchIcon onClick={openSearch} className={cls.Team__icon} />}
+                    {isMobile ? search : (isSearched ? search : <SearchIcon onClick={openSearch} className={cls.Team__icon} />)}
                     <Button onClick={switchModal} className={cls.Team__button}>Добавить пользователя</Button>
                 </div>
             </div>
-            <SearchUsers deleteUser={deleteUser} searchedEmail={searchedEmail} users={users} className={cls.Team__list} loading={loading} error={error} />
+            <SearchUsers changePermissions={changeUserPermissions} deleteUser={deleteUser} searchedEmail={searchedEmail} users={users} className={cls.Team__list} loading={loading} error={error} />
             <Modal isOpened={createShowed} onClose={switchModal}>
                 {!addedUser && <CreateUser users={users} onCreate={addUser} />}
                 {addedUser &&
@@ -60,6 +71,6 @@ const Team: FC = () => {
             </Modal>
         </div>
     )
-}
+})
 
 export default Team
