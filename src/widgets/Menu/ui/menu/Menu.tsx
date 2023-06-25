@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom"
 import { menuItems } from '@widgets/Menu/module/items'
 import { useWindowResize } from '@shared/lib/hooks/useWindowResize'
 import { ReactComponent as Burger } from "@app/assets/icons/Burger.svg"
+import Avatar from "@app/assets/icons/Avatar.svg"
 
 type MenuProps = {
     className?: string,
@@ -24,7 +25,7 @@ export const Menu: FC<MenuProps> = memo(({ className }) => {
         <nav className={classNames(cls.Menu, { [cls.open]: menu.value }, [className])}>
             {showFullVersion && <NavLink to="/"><Logo className={cls.logo} /></NavLink>}
             {!showFullVersion && <button onClick={closeMenu} className={cls.Menu__burger}><Burger /></button>}
-            <UserProfile role='Собственник' avatar={"https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg"} withName={!showFullVersion} name="Артем Иванов" className={cls.Menu__user} />
+            <UserProfile role='Собственник' avatar={Avatar} withName={!showFullVersion} name="Артем Иванов" className={cls.Menu__user} />
             <ul className={classNames(cls.Menu__list)}>
                 {menuItems.map(item => <li key={item.title}><Item {...item} menuOpened={!showFullVersion} /></li>)}
             </ul>
