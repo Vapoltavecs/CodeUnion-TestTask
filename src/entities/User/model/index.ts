@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IUser } from './model';
+
+const URL = import.meta.env.MODE === "PROD" ? import.meta.env.VITE_SERVER_URL : "db.json"
+
 export const useUsers = () => {
 
     const [users, setUsers] = useState<IUser[]>([])
@@ -9,7 +12,7 @@ export const useUsers = () => {
     const fetchUsers = async () => {
         try {
             setLoading(true)
-            const data = await (await fetch("/assets/db.json")).json() // Тут можно было бы сделать через axios, однако в приложении всего 1 запрос, поэтому не вижу в этом смысла
+            const data = await (await fetch(URL)).json() // Тут можно было бы сделать через axios, однако в приложении всего 1 запрос, поэтому не вижу в этом смысла
             setUsers(data)
             setError(null)
         } catch (error) {
